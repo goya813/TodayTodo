@@ -66,7 +66,7 @@ public class MainActivity : Activity() {
             val item = getItem(pos) as String
 
             if (view == null){
-                view = mInflater!!.inflate(R.layout.todo_row, parent, false)
+                view = mInflater?.inflate(R.layout.todo_row, parent, false)
             }
 
             val textView = view?.findViewById(R.id.todo_text) as TextView?

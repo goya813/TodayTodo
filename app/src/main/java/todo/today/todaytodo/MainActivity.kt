@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.support.v7.app.ActionBarActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.*
 import java.util.*
@@ -63,20 +64,21 @@ public class MainActivity : Activity() {
         {
             var view = convertView
             val item = getItem(pos) as String
-            val textView : TextView
 
             if (view == null){
                 view = mInflater!!.inflate(R.layout.todo_row, parent, false)
             }
 
-            textView = view!!.findViewById(R.id.todo_text) as TextView
-            textView.text = item
+            val textView = view?.findViewById(R.id.todo_text) as TextView?
+            textView?.text = item
 
-            val removeBtn = view!!.findViewById(R.id.remove_btn) as Button
-            removeBtn.setOnClickListener { v ->
+            val removeBtn = view?.findViewById(R.id.remove_btn) as Button?
+            removeBtn?.setOnClickListener { v ->
                 this.remove(item)
                 this.notifyDataSetChanged()
             }
+
+            if (textView == null || removeBtn == null) Log.e("getView", "" + pos + ": error");
 
             return view
         }
